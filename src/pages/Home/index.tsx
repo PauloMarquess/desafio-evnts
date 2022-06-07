@@ -1,21 +1,15 @@
-import { BoxShadow } from '../../components/atoms/BoxShadow/style';
-import Input from '../../components/atoms/Input';
+
 import Logo from '../../components/atoms/Logo';
-import { FormSearch, Container, ImageInput } from './style';
-import { images } from '../../assets';
+import FormSearch from '../../components/molecules/FormSearch';
+import { Container } from './style';
+
 
 const Home = () => {
   return (
     <Container>
       <Logo />
-      <Container width='70%'>
-        <FormSearch>
-          <BoxShadow fullWidth>
-            <Input placeholder="Search your Pokémon!" />
-            <ImageInput src={images.pokeBall} alt="Image Pokeball" />
-          </BoxShadow>
-          <Input placeholder="Search your Pokémon!" />
-        </FormSearch>
+      <Container width="70%">
+        <FormSearch/>
       </Container>
     </Container>
   );
