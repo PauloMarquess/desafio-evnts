@@ -5,16 +5,16 @@ import axios from '../service/index';
 
 function Router() {
   const [pokemons, setPokemons] = useState([]);
- 
 
   useEffect(() => {
     const loadAll = async () => {
-      let {data} = await axios.get(`/pokemon?limit=${151}&offset=${0}`);
+      let { data } = await axios.get(`/pokemon?limit=${151}&offset=${0}`);
       setPokemons(data.results);
-      
+      console.log(data.results);
     };
     loadAll();
   }, []);
+  
 
   return (
     <BrowserRouter>
