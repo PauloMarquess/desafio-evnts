@@ -1,15 +1,15 @@
-
 import Logo from '../../components/atoms/Logo';
+import Card from '../../components/molecules/Card';
 import FormSearch from '../../components/molecules/FormSearch';
 import { Container } from './style';
 
-
-const Home = () => {
+const Home = ({ pokemons }: any) => {
   return (
-    <Container>
+    <Container fullHeight>
       <Logo />
       <Container width="70%">
-        <FormSearch/>
+        <FormSearch />
+        <Card pokemons={pokemons} />
       </Container>
     </Container>
   );
