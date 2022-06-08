@@ -12,5 +12,10 @@ export const Container = styled.div<ContainerProps>`
   background-color: #f6f8fc;
   height: ${(fullHeight) => (fullHeight ? '100vh' : 'height')};
   width: ${(props) => (props.width ? props.width : '100%')};
+
+  @media (max-width:769px) {
+    width: 100%;
+    padding: 0 5px;
+  }
 `;
 

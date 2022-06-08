@@ -4,6 +4,7 @@ interface BoxShadowProps {
   fullWidth?: boolean;
   column?: boolean;
   pointer?: boolean;
+  responsive?:boolean
 }
 
 export const BoxShadow = styled.div<BoxShadowProps>`
@@ -28,5 +29,11 @@ export const BoxShadow = styled.div<BoxShadowProps>`
     ::placeholder {
       color: #838486;
     }
+  }
+  @media (max-width:769px){
+    margin-bottom: 12px;
+    width: ${({responsive})=>responsive ? '45%' : '100%'};
+    height: ${({responsive})=>responsive ? '150px' : ''};
+    
   }
 `;

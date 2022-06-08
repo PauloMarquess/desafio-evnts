@@ -16,7 +16,7 @@ const Card = ({ pokemons }: any) => {
   return (
     <ContainerCards>
       {pokemons.map((pokemon: any) => (
-        <BoxShadow pointer key={pokemon.name} column>
+        <BoxShadow responsive pointer key={pokemon.name} column>
           <ImagePokemon src={images} width="200px" />
           <Description>
             <h4>Nº 200</h4>

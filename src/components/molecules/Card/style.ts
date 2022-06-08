@@ -13,6 +13,10 @@ export const ImagePokemon = styled.img`
   position: relative;
   bottom: 55px;
   max-width: 100px;
+  @media (max-width:769px){
+    width:80px;
+    bottom:40px;
+  }
 `;
 
 export const CardTypes = styled.section`
@@ -35,5 +39,8 @@ export const Description = styled.div`
   h4 {
     font-weight: 500;
     color: #b4bbc3;
+  }
+  @media (max-width:769px ){
+    bottom: 30px;
   }
 `;
