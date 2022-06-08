@@ -11,11 +11,11 @@ export const ContainerCards = styled.div`
 `;
 export const ImagePokemon = styled.img`
   position: relative;
-  bottom: 50px;
+  bottom: 55px;
   max-width: 100px;
 `;
 
-export const CardTypes = styled.div`
+export const CardTypes = styled.section`
   display: flex;
   gap: 20px;
 `;
@@ -25,8 +25,7 @@ export const Description = styled.div`
   align-items: center;
   gap: 5px;
   position: relative;
-  bottom: 50px;
-  right: 6%;
+  bottom: 30px;
 
   h3 {
     font-weight: 600;

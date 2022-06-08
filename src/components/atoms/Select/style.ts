@@ -6,6 +6,7 @@ export const ContainerSelect = styled.div`
     position: relative;
     right: 10px;
     width: 25px;
+    left: 4px;
     
   }
   select {

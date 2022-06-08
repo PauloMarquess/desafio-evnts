@@ -19,8 +19,7 @@ export const BoxShadow = styled.div<BoxShadowProps>`
   cursor: ${({ pointer }) => (pointer ? 'pointer' : '')};
 
   input,
-  select,
-  div {
+  select {
     height: 48px;
     width: 100%;
     border: none;

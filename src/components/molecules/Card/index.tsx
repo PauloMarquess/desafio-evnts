@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { BoxShadow } from '../../atoms/BoxShadow/style';
+import TypesPokemon from '../../atoms/TypesPokemon';
 import { CardTypes, ContainerCards, Description, ImagePokemon } from './style';
 
 const Card = ({ pokemons }: any) => {
@@ -22,7 +23,7 @@ const Card = ({ pokemons }: any) => {
             <h3 onClick={() => openModalDetailsPokemon(pokemon.url)}>
               {pokemon.name}
             </h3>
-            <CardTypes></CardTypes>
+            <CardTypes><TypesPokemon type='Grass'/><TypesPokemon type='Fire'/></CardTypes>
           </Description>
         </BoxShadow>
       ))}
