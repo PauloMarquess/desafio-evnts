@@ -10,7 +10,7 @@ export const ImageInput = styled.img`
   width: 25px;
   height: 25px;
   position: relative;
-  top: 12px;
+
   right: 12px;
   cursor: pointer;
 `;

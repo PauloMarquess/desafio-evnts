@@ -1,9 +1,10 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { BoxShadow } from '../../atoms/BoxShadow/style';
+import { CardTypes, ContainerCards, Description, ImagePokemon } from './style';
 
 const Card = ({ pokemons }: any) => {
   const [images, setImages] = useState();
-
 
   async function openModalDetailsPokemon(url: any) {
     const { data } = await axios.get(url);
@@ -12,18 +13,20 @@ const Card = ({ pokemons }: any) => {
   }
 
   return (
-    <>
-      <div>
-        {pokemons.map((pokemon: any) => (
-          <ul key={pokemon.name}>
-            <img src={images} width="200px" />
-            <li onClick={() => openModalDetailsPokemon(pokemon.url)}>
+    <ContainerCards>
+      {pokemons.map((pokemon: any) => (
+        <BoxShadow pointer key={pokemon.name} column>
+          <ImagePokemon src={images} width="200px" />
+          <Description>
+            <h4>Nº 200</h4>
+            <h3 onClick={() => openModalDetailsPokemon(pokemon.url)}>
               {pokemon.name}
-            </li>
-          </ul>
-        ))}
-      </div>
-    </>
+            </h3>
+            <CardTypes></CardTypes>
+          </Description>
+        </BoxShadow>
+      ))}
+    </ContainerCards>
   );
 };
 

@@ -4,12 +4,14 @@ export const ContainerSelect = styled.div`
   display: flex;
   img {
     position: relative;
+    right: 10px;
     width: 25px;
-    left: 5px;
+    
   }
   select {
-    padding-left: 5px;
     color: #838486;
-    width: 220px;
+    width: 230px;
+    background-color: white;
+    padding-left: 0;
   }
 `;
