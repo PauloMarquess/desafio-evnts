@@ -6,6 +6,7 @@ import { CardTypes, ContainerCards, Description, ImagePokemon } from './style';
 
 const Card = ({ pokemons }: any) => {
   const [images, setImages] = useState();
+  const [loading,setLoading] = useState(true)
 
   async function openModalDetailsPokemon(url: any) {
     const { data } = await axios.get(url);
@@ -13,24 +14,57 @@ const Card = ({ pokemons }: any) => {
     setImages(data.sprites.front_default);
   }
 
+ 
+  
+
   return (
     <ContainerCards>
       {pokemons.map((pokemon: any) => (
-        <BoxShadow responsive pointer key={pokemon.name} column>
-          <ImagePokemon src={images} />
-          <Description>
-            <h4>Nº 200</h4>
-            <h3 onClick={() => openModalDetailsPokemon(pokemon.url)}>
-              {pokemon.name}
-            </h3>
-            <CardTypes>
-              <TypesPokemon type="Grass" />
-              <TypesPokemon type="Fire" />
-            </CardTypes>
-          </Description>
-        </BoxShadow>
+        <Item item={pokemon} />
       ))}
     </ContainerCards>
+  );
+};
+
+const Item = ({ item }) => {
+  const [pokemon, setPokemon] = useState('');
+  const [loading,setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    details(item.url);
+    setLoading(false)
+  }, []);
+
+  async function details(url: any) {
+    const { data } = await axios.get(url);
+
+    const image = await axios.get(url);
+
+    console.log(data);
+
+    setPokemon({ ...data, image: image.data.sprites.front_default });
+  }
+
+  if(loading){
+    return <></>
+  }
+
+  return (
+    <BoxShadow responsive pointer column>
+      <Description>
+        <h4>Nº {pokemon.id}</h4>
+        <ImagePokemon src={pokemon.image} />
+        <h3 onClick={() => {}}>{pokemon.name}</h3>
+        <CardTypes>
+         {pokemon.types.map((type)=>{
+           return(
+            <TypesPokemon type={type.type.name} />
+           )
+         })}
+        </CardTypes>
+      </Description>
+    </BoxShadow>
   );
 };
 
