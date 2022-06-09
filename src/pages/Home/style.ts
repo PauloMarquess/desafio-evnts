@@ -10,7 +10,7 @@ export const Container = styled.div<ContainerProps>`
   align-items: center;
   flex-direction:column;
   background-color: #f6f8fc;
-  height: ${(fullHeight) => (fullHeight ? '100vh' : 'height')};
+  height: ${(fullHeight) => (fullHeight ? '100vh' : 'auto')};
   width: ${(props) => (props.width ? props.width : '100%')};
 
   @media (max-width:769px) {

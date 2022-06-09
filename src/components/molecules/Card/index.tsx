@@ -9,7 +9,7 @@ const Card = ({ pokemons }: any) => {
 
   async function openModalDetailsPokemon(url: any) {
     const { data } = await axios.get(url);
-    console.log(data);
+
     setImages(data.sprites.front_default);
   }
 
@@ -17,7 +17,7 @@ const Card = ({ pokemons }: any) => {
     <ContainerCards>
       {pokemons.map((pokemon: any) => (
         <BoxShadow responsive pointer key={pokemon.name} column>
-          <ImagePokemon src={images} width="200px" />
+          <ImagePokemon src={images} />
           <Description>
             <h4>Nº 200</h4>
             <h3 onClick={() => openModalDetailsPokemon(pokemon.url)}>
