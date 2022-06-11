@@ -11,7 +11,7 @@ export const ContainerCards = styled.div`
 `;
 export const ImagePokemon = styled.img`
   position: relative;
-  bottom: 55px;
+  bottom: 45px;
   max-width: 100px;
   @media (max-width:769px){
     width:80px;
@@ -22,6 +22,9 @@ export const ImagePokemon = styled.img`
 export const CardTypes = styled.section`
   display: flex;
   gap: 20px;
+  @media (max-width:769px){
+    gap: 5px;
+  }
 `;
 export const Description = styled.div`
   display: flex;
@@ -42,5 +45,6 @@ export const Description = styled.div`
   }
   @media (max-width:769px ){
     bottom: 30px;
+  
   }
 `;
