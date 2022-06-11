@@ -5,14 +5,15 @@ import axios from 'axios';
 
 function Router() {
   const [pokemons, setPokemons] = useState<any>([]);
-
+  
   useEffect(() => {
     axios
-      .get('https://pokeapi.co/api/v2/pokemon?limit=151')
+      .get('https://pokeapi.co/api/v2/pokemon?limit=20')
       .then((response) => {
+        
         const pokelist = response.data.results;
         const requests = [];
-
+       
         for (let i = 0; i < pokelist.length; i++) {
           requests.push(axios.get(pokelist[i].url));
         }
@@ -25,6 +26,7 @@ function Router() {
           setPokemons(pokelist);
         });
       });
+     
   }, []);
 
   return (
