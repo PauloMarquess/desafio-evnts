@@ -38,10 +38,12 @@ export const Description = styled.div`
     font-weight: 600;
     color: #2d3c53;
     text-transform: capitalize;
+    margin: 10px 0 6px 0;
   }
   h4 {
     font-weight: 500;
     color: #b4bbc3;
+
   }
   @media (max-width:769px ){
     bottom: 30px;

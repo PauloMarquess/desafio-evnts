@@ -8,7 +8,7 @@ function Router() {
   
   useEffect(() => {
     axios
-      .get('https://pokeapi.co/api/v2/pokemon?limit=20')
+      .get('https://pokeapi.co/api/v2/pokemon?limit=151')
       .then((response) => {
         
         const pokelist = response.data.results;

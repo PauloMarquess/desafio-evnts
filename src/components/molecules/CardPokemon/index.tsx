@@ -12,20 +12,26 @@ import {
 } from './style';
 
 const Card = ({ pokemons }: any) => {
-  const openModalDetailsPokemon = (description: string) => {
+  const handleModal = (pokemon: any) => {
     setVisibleModal(!visibleModal);
-    console.log(description);
+    setDetailsPokemon(pokemon);
   };
   const [visibleModal, setVisibleModal] = useState(false);
+  const [detailsPokemon, setDetailsPokemon] = useState({});
 
   return (
     <Container>
-      {visibleModal && <ModalPokemon openModalDetailsPokemon={openModalDetailsPokemon}/>}
+      {visibleModal && (
+        <ModalPokemon
+          detailsPokemon={detailsPokemon}
+          handleModal={handleModal}
+        />
+      )}
       <ContainerCards>
         {pokemons.map((pokemon: any) => (
           <BoxShadow
             onClick={() => {
-              openModalDetailsPokemon(pokemon);
+              handleModal(pokemon);
             }}
             responsive
             pointer
@@ -35,9 +41,7 @@ const Card = ({ pokemons }: any) => {
             <ImagePokemon src={pokemon.sprites.front_default} />
             <Description>
               <h4>Nº {pokemon.id}</h4>
-              <h3 onClick={() => openModalDetailsPokemon(pokemon.url)}>
-                {pokemon.name}
-              </h3>
+              <h3 onClick={() => handleModal(pokemon.url)}>{pokemon.name}</h3>
               <CardTypes>
                 {pokemon.types.map((type: any, index: string) => (
                   <Type key={index}>{type.type.name}</Type>
