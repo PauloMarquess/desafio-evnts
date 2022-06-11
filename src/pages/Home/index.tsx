@@ -1,5 +1,5 @@
 import Logo from '../../components/atoms/Logo';
-import Card from '../../components/molecules/Card';
+import Card from '../../components/molecules/CardPokemon';
 import FormSearch from '../../components/molecules/FormSearch';
 import { Container } from './style';
 

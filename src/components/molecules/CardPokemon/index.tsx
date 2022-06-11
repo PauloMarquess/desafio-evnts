@@ -13,11 +13,12 @@ const Card = ({ pokemons }: any) => {
     setImages(data.sprites.front_default);
   }
 
+
   return (
     <ContainerCards>
       {pokemons.map((pokemon: any) => (
         <BoxShadow responsive pointer key={pokemon.name} column>
-          <ImagePokemon src={images} width="200px" />
+          <ImagePokemon src={pokemon.sprites.front_default} width="200px" />
           <Description>
             <h4>Nº 200</h4>
             <h3 onClick={() => openModalDetailsPokemon(pokemon.url)}>
