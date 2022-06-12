@@ -44,7 +44,9 @@ const Card = ({ pokemons }: any) => {
               <h3 onClick={() => handleModal(pokemon.url)}>{pokemon.name}</h3>
               <CardTypes>
                 {pokemon.types.map((type: any, index: string) => (
-                  <Type key={index}>{type.type.name}</Type>
+                  <Type className={type.type.name} key={index}>
+                    {type.type.name}
+                  </Type>
                 ))}
               </CardTypes>
             </Description>

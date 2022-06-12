@@ -21,7 +21,7 @@ const ModalPokemon = ({ handleModal, detailsPokemon }: any) => {
           <TextDestak>{`${detailsPokemon.name} Pokémon`}</TextDestak>
           <CardTypes>
             {detailsPokemon.types.map((type: any, index: string) => (
-              <Type key={index}>{type.type.name}</Type>
+              <Type className={type.type.name} key={index}>{type.type.name}</Type>
             ))}
           </CardTypes>
           <h6>Pokedex Entry</h6>
