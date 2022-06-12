@@ -5,34 +5,36 @@ import axios from 'axios';
 
 function Router() {
   const [pokemons, setPokemons] = useState<any>([]);
-  
+  const [types,setTypes] =useState([])
+  const baseUrl = 'https://pokeapi.co/api/v2';
   useEffect(() => {
-    axios
-      .get('https://pokeapi.co/api/v2/pokemon?limit=151')
-      .then((response) => {
-        
-        const pokelist = response.data.results;
-        const requests = [];
-       
-        for (let i = 0; i < pokelist.length; i++) {
-          requests.push(axios.get(pokelist[i].url));
-        }
+    axios.get(`${baseUrl}/pokemon?limit=151`).then((response) => {
+      const pokelist = response.data.results;
+      const requests = [];
 
-        axios.all(requests).then((responses) => {
-          const pokelist = responses.map((response) => {
-            return response.data;
-          });
+      for (let i = 0; i < pokelist.length; i++) {
+        requests.push(axios.get(pokelist[i].url));
+      }
 
-          setPokemons(pokelist);
+      axios.all(requests).then((responses) => {
+        const pokelist = responses.map((response) => {
+          return response.data;
         });
-      });
-     
-  }, []);
 
+        setPokemons(pokelist);
+      });
+    });
+  }, []);
+  useEffect(()=>{
+    axios.get(`${baseUrl}/type`).then((response)=>{
+      const allTypes =response.data.results
+      setTypes(allTypes)
+    })
+  },[])
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home pokemons={pokemons} />} />
+        <Route path="/" element={<Home pokemons={pokemons} types={types} />} />
       </Routes>
     </BrowserRouter>
   );

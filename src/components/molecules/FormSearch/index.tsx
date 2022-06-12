@@ -5,7 +5,7 @@ import Input from '../../atoms/Input';
 import Select from '../../atoms/Select';
 import { CardInput, ImageInput } from './style';
 
-const FormSearch = () => {
+const FormSearch = ({types}:any) => {
   return (
     <CardInput>
       <BoxShadow fullWidth>
@@ -13,7 +13,7 @@ const FormSearch = () => {
         <ImageInput src={icons.pokeBallPokemon} alt="Image Pokeball" />
       </BoxShadow>
       <BoxShadow>
-        <Select />
+        <Select types={types} />
       </BoxShadow>
     </CardInput>
   );
