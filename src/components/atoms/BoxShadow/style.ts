@@ -4,7 +4,7 @@ interface BoxShadowProps {
   fullWidth?: boolean;
   column?: boolean;
   pointer?: boolean;
-  responsive?:boolean
+  responsive?: boolean;
 }
 
 export const BoxShadow = styled.div<BoxShadowProps>`
@@ -30,10 +30,9 @@ export const BoxShadow = styled.div<BoxShadowProps>`
       color: #838486;
     }
   }
-  @media (max-width:769px){
+  @media (max-width: 769px) {
     margin-bottom: 12px;
-    width: ${({responsive})=>responsive ? '45%' : '100%'};
-    height: ${({responsive})=>responsive ? '150px' : ''};
-    
+    width: ${({ responsive }) => (responsive ? '45%' : '100%')};
+    height: ${({ responsive }) => (responsive ? '150px' : '')};
   }
 `;

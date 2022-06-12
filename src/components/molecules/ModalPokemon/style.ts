@@ -10,11 +10,11 @@ export const ContainerModal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: show 0.6s both;
+  animation: show 0.5s both;
   @keyframes show {
     from {
       opacity: 0;
-      transform: translate3d(0, 20%, 20%);
+      transform: translate3d(0, 0, 20%);
     }
     to {
       opacity: 1;

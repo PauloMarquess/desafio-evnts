@@ -4,10 +4,13 @@ import Home from '../pages/Home';
 import axios from 'axios';
 
 function Router() {
+
   const [pokemons, setPokemons] = useState<any>([]);
   const [types,setTypes] =useState([])
+  const [loading,setLoading]=useState(false)
   const baseUrl = 'https://pokeapi.co/api/v2';
   useEffect(() => {
+    setLoading(true)
     axios.get(`${baseUrl}/pokemon?limit=151`).then((response) => {
       const pokelist = response.data.results;
       const requests = [];
@@ -22,6 +25,7 @@ function Router() {
         });
 
         setPokemons(pokelist);
+        setLoading(false)
       });
     });
   }, []);
@@ -34,7 +38,7 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home pokemons={pokemons} types={types} />} />
+        <Route path="/" element={<Home pokemons={pokemons} loading={loading} types={types} />} />
       </Routes>
     </BrowserRouter>
   );

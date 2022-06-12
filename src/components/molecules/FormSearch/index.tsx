@@ -5,7 +5,7 @@ import Input from '../../atoms/Input';
 import Select from '../../atoms/Select';
 import { CardInput, ImageInput } from './style';
 
-const FormSearch = ({types}:any) => {
+const FormSearch = ({ types }: any) => {
   return (
     <CardInput>
       <BoxShadow fullWidth>
