@@ -9,7 +9,7 @@ const Home = ({ pokemons, types, loading }: any) => {
     <Container fullHeight>
       <Logo />
       <Container width="70%">
-        <FormSearch types={types} />
+        <FormSearch types={types}  />
         {loading ? <Loading /> : <Card pokemons={pokemons} />}
       </Container>
     </Container>

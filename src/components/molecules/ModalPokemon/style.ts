@@ -11,6 +11,7 @@ export const ContainerModal = styled.div`
   justify-content: center;
   align-items: center;
   animation: show 0.5s both;
+ 
   @keyframes show {
     from {
       opacity: 0;
@@ -21,6 +22,7 @@ export const ContainerModal = styled.div`
       transform: translate3d(0, 0, 0);
     }
   }
+ 
 `;
 export const Modal = styled.div`
   background-color: #fff;
@@ -30,8 +32,12 @@ export const Modal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media (max-width:769px){
-    width: 90%;
+  @media (max-width: 769px) {
+    width: 100%;
+    height: 71%;
+    position: fixed;
+    bottom: 0;
+    border-radius: 8px 8px 0 0;
   }
   h5 {
     color: #b4bbc3;
