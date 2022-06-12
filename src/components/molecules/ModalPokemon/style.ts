@@ -30,6 +30,9 @@ export const Modal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width:769px){
+    width: 90%;
+  }
   h5 {
     color: #b4bbc3;
     font-size: 16px;
