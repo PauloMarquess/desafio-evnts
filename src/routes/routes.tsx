@@ -9,9 +9,8 @@ function Router() {
   const [types, setTypes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState<any>([]);
-  const [selected,setSelected]=useState('Type')
+  const [selected, setSelected] = useState('Type');
   const baseUrl = 'https://pokeapi.co/api/v2';
-  
 
   useEffect(() => {
     setLoading(true);
@@ -32,6 +31,30 @@ function Router() {
       });
     });
   }, []);
+  
+  
+  useEffect(()=>{
+     setLoading(true);
+     if(selected!=="Type"){
+    axios.get(`${baseUrl}/type/${selected}`).then((response) => {
+      const pokelist = response.data.pokemon;
+      
+      const requests = [];
+
+      for (let i = 0; i < pokelist.length; i++) {
+        requests.push(axios.get(pokelist[i].pokemon.url));
+      }
+
+      axios.all(requests).then((responses) => {
+        const pokelist = responses.map((response) => {
+          return response.data;
+        });
+        setPokemons(pokelist);
+        setLoading(false);
+      });
+    });}
+  },[selected])
+  
 
   useEffect(() => {
     axios.get(`${baseUrl}/type`).then((response) => {
@@ -39,13 +62,10 @@ function Router() {
       setTypes(allTypes);
     });
   }, []);
-  console.log(types)
+  console.log(types);
   const pokemonFilter = pokemons.filter((pokemon: any) =>
     pokemon.name.toLowerCase().includes(search)
-    
   );
-
-  
 
   return (
     <BrowserRouter>
@@ -54,7 +74,15 @@ function Router() {
           path="/"
           element={
             <CounterContext.Provider
-              value={{ pokemons, types, loading, pokemonFilter, setSearch,selected,setSelected }}
+              value={{
+                pokemons,
+                types,
+                loading,
+                pokemonFilter,
+                setSearch,
+                selected,
+                setSelected,
+              }}
             >
               <Home />
             </CounterContext.Provider>
