@@ -7,19 +7,18 @@ import { Container } from './style';
 export const CounterContext = createContext<any>('');
 const Home = ({ pokemons, types, loading }: any) => {
   const [search, setSearch] = useState<any>([]);
-
- 
+  
   const pokemonFilter = pokemons.filter((pokemon: any) =>
-        pokemon.name.includes(search)
+    pokemon.name.toLowerCase().includes(search)
   );
 
   return (
     <Container fullHeight>
       <Logo />
       <Container width="70%">
-        <CounterContext.Provider value={{ search, setSearch }}>
+        <CounterContext.Provider value={{ setSearch }}>
           <FormSearch types={types} />
-          {loading ? <Loading /> : <Card pokemonFilter={pokemonFilter} pokemons={pokemons} />}
+          {loading ? <Loading /> : <Card pokemonFilter={pokemonFilter} />}
         </CounterContext.Provider>
       </Container>
     </Container>

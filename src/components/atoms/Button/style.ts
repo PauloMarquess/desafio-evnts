@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 interface ContainerButtonProps {
   fullWidth?: boolean;
-  end?: boolean;
+  flexEnd?: boolean;
 }
 
 export const ContainerButton = styled.div<ContainerButtonProps>`
   display: flex;
-  align-self: ${({ end }) => (end ? 'end' : '')};
+  align-self: ${({ flexEnd }) => (flexEnd ? 'end' : '')};
 
   button {
     width: ${({ fullWidth }) => (fullWidth ? '100%' : '')};

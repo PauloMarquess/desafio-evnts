@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { useState } from 'react';
 import { Container } from '../../../pages/Home/style';
 import { BoxShadow } from '../../atoms/BoxShadow/style';
 import ModalPokemon from '../ModalPokemon';
@@ -11,7 +11,7 @@ import {
   Type,
 } from './style';
 
-const Card = ({ pokemons,pokemonFilter }: any) => {
+const Card = ({ pokemonFilter }: any) => {
   const handleModal = (pokemon: any) => {
     setVisibleModal(!visibleModal);
     setDetailsPokemon(pokemon);
@@ -28,7 +28,6 @@ const Card = ({ pokemons,pokemonFilter }: any) => {
         />
       )}
       <ContainerCards>
-      
         {pokemonFilter.map((pokemon: any) => (
           <BoxShadow
             onClick={() => {

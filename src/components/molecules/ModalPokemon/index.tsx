@@ -7,7 +7,7 @@ const ModalPokemon = ({ handleModal, detailsPokemon }: any) => {
     <ContainerModal>
       <Modal>
         <Button
-          end
+          flexEnd
           onClick={() => {
             handleModal();
           }}

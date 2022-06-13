@@ -5,12 +5,12 @@ interface ButtonProps {
   children: ReactNode;
   onClick: () => void;
   fullWidth?: boolean;
-  end?: boolean;
+  flexEnd?: boolean ;
 }
 
-export const Button = ({ children, onClick, fullWidth, end }: ButtonProps) => {
+export const Button = ({ children, onClick, fullWidth, flexEnd }: ButtonProps) => {
   return (
-    <ContainerButton end={end} fullWidth={fullWidth}>
+    <ContainerButton flexEnd={flexEnd} fullWidth={fullWidth}>
       <button onClick={onClick}>{children}</button>
     </ContainerButton>
   );
