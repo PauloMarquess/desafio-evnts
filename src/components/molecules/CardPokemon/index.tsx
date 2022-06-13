@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { CounterContext } from '../../../context';
 import { Container } from '../../../pages/Home/style';
 import { BoxShadow } from '../../atoms/BoxShadow/style';
 import ModalPokemon from '../ModalPokemon';
@@ -11,7 +12,8 @@ import {
   Type,
 } from './style';
 
-const Card = ({ pokemonFilter }: any) => {
+const Card = () => {
+  const {pokemonFilter } = useContext(CounterContext);
   const handleModal = (pokemon: any) => {
     setVisibleModal(!visibleModal);
     setDetailsPokemon(pokemon);

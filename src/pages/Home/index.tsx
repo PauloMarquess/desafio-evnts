@@ -1,25 +1,18 @@
-import { createContext, useState } from 'react';
 import Loading from '../../components/atoms/Loading';
 import Logo from '../../components/atoms/Logo';
 import Card from '../../components/molecules/CardPokemon';
 import FormSearch from '../../components/molecules/FormSearch';
 import { Container } from './style';
-export const CounterContext = createContext<any>('');
-const Home = ({ pokemons, types, loading }: any) => {
-  const [search, setSearch] = useState<any>([]);
-  
-  const pokemonFilter = pokemons.filter((pokemon: any) =>
-    pokemon.name.toLowerCase().includes(search)
-  );
-
+import { useContext } from 'react';
+import { CounterContext } from '../../context';
+const Home = () => {
+  const { loading } = useContext(CounterContext);
   return (
     <Container fullHeight>
       <Logo />
       <Container width="70%">
-        <CounterContext.Provider value={{ setSearch }}>
-          <FormSearch types={types} />
-          {loading ? <Loading /> : <Card pokemonFilter={pokemonFilter} />}
-        </CounterContext.Provider>
+        <FormSearch />
+        {loading ? <Loading /> : <Card />}
       </Container>
     </Container>
   );

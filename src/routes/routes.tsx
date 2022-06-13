@@ -2,15 +2,17 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import axios from 'axios';
+import { CounterContext } from '../context';
 
 function Router() {
-
   const [pokemons, setPokemons] = useState<any>([]);
-  const [types,setTypes] =useState([])
-  const [loading,setLoading]=useState(false)
+  const [types, setTypes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState<any>([]);
   const baseUrl = 'https://pokeapi.co/api/v2';
+
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     axios.get(`${baseUrl}/pokemon?limit=151`).then((response) => {
       const pokelist = response.data.results;
       const requests = [];
@@ -23,22 +25,36 @@ function Router() {
         const pokelist = responses.map((response) => {
           return response.data;
         });
-
         setPokemons(pokelist);
-        setLoading(false)
+        setLoading(false);
       });
     });
   }, []);
-  useEffect(()=>{
-    axios.get(`${baseUrl}/type`).then((response)=>{
-      const allTypes =response.data.results
-      setTypes(allTypes)
-    })
-  },[])
+
+  useEffect(() => {
+    axios.get(`${baseUrl}/type`).then((response) => {
+      const allTypes = response.data.results;
+      setTypes(allTypes);
+    });
+  }, []);
+
+  const pokemonFilter = pokemons.filter((pokemon: any) =>
+    pokemon.name.toLowerCase().includes(search)
+  );
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home pokemons={pokemons} loading={loading} types={types} />} />
+        <Route
+          path="/"
+          element={
+            <CounterContext.Provider
+              value={{ pokemons, types, loading, pokemonFilter, setSearch }}
+            >
+              <Home />
+            </CounterContext.Provider>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
