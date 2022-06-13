@@ -9,7 +9,9 @@ function Router() {
   const [types, setTypes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState<any>([]);
+  const [selected,setSelected]=useState('Type')
   const baseUrl = 'https://pokeapi.co/api/v2';
+  
 
   useEffect(() => {
     setLoading(true);
@@ -37,10 +39,13 @@ function Router() {
       setTypes(allTypes);
     });
   }, []);
-
+  console.log(types)
   const pokemonFilter = pokemons.filter((pokemon: any) =>
     pokemon.name.toLowerCase().includes(search)
+    
   );
+
+  
 
   return (
     <BrowserRouter>
@@ -49,7 +54,7 @@ function Router() {
           path="/"
           element={
             <CounterContext.Provider
-              value={{ pokemons, types, loading, pokemonFilter, setSearch }}
+              value={{ pokemons, types, loading, pokemonFilter, setSearch,selected,setSelected }}
             >
               <Home />
             </CounterContext.Provider>
