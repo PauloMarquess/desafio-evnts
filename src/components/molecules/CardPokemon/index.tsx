@@ -14,7 +14,7 @@ import {
 } from './style';
 
 const Card = () => {
-  const {pokemonFilter } = useContext(CounterContext);
+  const { pokemonFilter } = useContext(CounterContext);
   const handleModal = (pokemon: any) => {
     setVisibleModal(!visibleModal);
     setDetailsPokemon(pokemon);
@@ -32,7 +32,7 @@ const Card = () => {
       )}
       <ContainerCards>
         {pokemonFilter.map((pokemon: any) => (
-          <BoxShadow
+          <>{pokemon.id <=151 &&  <BoxShadow
             onClick={() => {
               handleModal(pokemon);
             }}
@@ -53,10 +53,12 @@ const Card = () => {
                 ))}
               </CardTypes>
             </Description>
-          </BoxShadow>
+          </BoxShadow>}
+           
+          </>
         ))}
       </ContainerCards>
-      <Pagination/>
+      <Pagination />
     </Container>
   );
 };

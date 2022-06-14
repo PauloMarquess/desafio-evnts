@@ -58,6 +58,7 @@ function Router() {
           const pokelist = responses.map((response) => {
             return response.data;
           });
+         
           setPokemons(pokelist);
           setLoading(false);
         });
@@ -73,11 +74,11 @@ function Router() {
   }, []);
   const gotoNextPage = () => {
     setCurrentPageUrl(nextPageUrl);
-    console.log('next page')
+
   };
   const gotoPrevPage = () => {
     setCurrentPageUrl(prevPageUrl);
-    console.log('prev page')
+
   };
   const pokemonFilter = pokemons.filter((pokemon: any) =>
     pokemon.name.toLowerCase().includes(search)
