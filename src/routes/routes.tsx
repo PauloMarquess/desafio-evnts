@@ -64,6 +64,7 @@ function Router() {
 
           setPokemons(pokelist);
           setLoading(false);
+          
         });
       });
     }
