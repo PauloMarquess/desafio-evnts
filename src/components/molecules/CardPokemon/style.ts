@@ -9,7 +9,9 @@ export const ContainerCards = styled.div`
   align-items:flex-start;
   justify-content:flex-start;
   gap: 30px 1.8% ;
- 
+ @media (max-width:769px){
+  gap: 30px;
+ }
 `;
 export const ImagePokemon = styled.img`
   position: relative;

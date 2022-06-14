@@ -14,8 +14,10 @@ const FormSearch = () => {
       <BoxShadow width='69%'>
         <Input
           placeholder="Search your Pokémon!"
+          
           onChange={(e: any) => {
             setSearch(e.target.value.toLowerCase());
+           
           }}
         />
         <ImageInput src={icons.pokeBallPokemon} alt="Image Pokeball" />
