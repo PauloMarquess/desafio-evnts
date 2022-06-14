@@ -35,6 +35,7 @@ const Card = () => {
           <React.Fragment key={pokemon.id}>
             {pokemon.id <= 151 && (
               <BoxShadow
+                width="22%"
                 onClick={() => {
                   handleModal(pokemon);
                 }}

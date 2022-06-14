@@ -17,7 +17,7 @@ export const ContainerSelect = styled.div`
   }
   select {
     color: #838486;
-    width: 230px;
+    width: 300px;
     background-color: white;
     padding-left: 0;
   }

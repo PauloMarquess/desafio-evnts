@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface BoxShadowProps {
-  fullWidth?: boolean;
+  width?: string;
   column?: boolean;
   pointer?: boolean;
   responsive?: boolean;
@@ -11,12 +11,13 @@ export const BoxShadow = styled.div<BoxShadowProps>`
   display: flex;
   -webkit-box-shadow: 2px 0px 10px 5px rgba(0, 0, 0, 0.1);
   box-shadow: 2px 0px 10px 5px rgba(0, 0, 0, 0.1);
-  width: ${({ fullWidth }) => (fullWidth ? '100%' : '24%')};
+  width: ${(props) => (props.width ? props.width : '100%')};
   flex-direction: ${({ column }) => (column ? 'column' : 'row')};
   border-radius: 8px;
   margin-bottom: 20px;
   align-items: center;
   background: #fff;
+
   cursor: ${({ pointer }) => (pointer ? 'pointer' : '')};
  
   input,

@@ -7,6 +7,7 @@ import { CounterContext } from '../context';
 function Router() {
   const baseUrl = 'https://pokeapi.co/api/v2';
   const [pokemons, setPokemons] = useState<any>([]);
+  const [pokemonsLimit, setPokemonsLimit] = useState<any>([]);
   const [types, setTypes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState<any>([]);
@@ -103,8 +104,7 @@ function Router() {
                 gotoNextPage,
                 gotoPrevPage,
                 nextPageUrl,
-                prevPageUrl
-            
+                prevPageUrl,
               }}
             >
               <Home />

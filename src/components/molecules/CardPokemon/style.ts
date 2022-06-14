@@ -2,12 +2,14 @@ import styled from 'styled-components';
 
 export const ContainerCards = styled.div`
   width: 100%;
+  min-height: 58vh;
   display: flex;
   flex-wrap: wrap;
   margin: 30px 0;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px 0;
+  align-items:flex-start;
+  justify-content:flex-start;
+  gap: 30px 1.8% ;
+ 
 `;
 export const ImagePokemon = styled.img`
   position: relative;
