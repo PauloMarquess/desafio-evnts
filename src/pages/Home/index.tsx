@@ -5,10 +5,11 @@ import FormSearch from '../../components/molecules/FormSearch';
 import { Container } from './style';
 import { useContext } from 'react';
 import { CounterContext } from '../../context';
+
 const Home = () => {
   const { loading } = useContext(CounterContext);
   return (
-    <Container fullHeight>
+    <Container>
       <Logo />
       <Container width="70%">
         <FormSearch />

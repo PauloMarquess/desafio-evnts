@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 interface ContainerProps {
   width?:string
-  fullHeight?:boolean
-  
+ 
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -10,7 +9,7 @@ export const Container = styled.div<ContainerProps>`
   align-items: center;
   flex-direction:column;
   background-color: #f6f8fc;
-  height: ${(fullHeight) => (fullHeight ? '100vh' : 'height')};
+  height: auto;
   width: ${(props) => (props.width ? props.width : '100%')};
 
   @media (max-width:769px) {

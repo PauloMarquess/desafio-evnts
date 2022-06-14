@@ -14,7 +14,7 @@ export const BoxShadow = styled.div<BoxShadowProps>`
   width: ${({ fullWidth }) => (fullWidth ? '100%' : '24%')};
   flex-direction: ${({ column }) => (column ? 'column' : 'row')};
   border-radius: 8px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   align-items: center;
   background: #fff;
   cursor: ${({ pointer }) => (pointer ? 'pointer' : '')};

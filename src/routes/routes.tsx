@@ -5,18 +5,27 @@ import axios from 'axios';
 import { CounterContext } from '../context';
 
 function Router() {
+  const baseUrl = 'https://pokeapi.co/api/v2';
   const [pokemons, setPokemons] = useState<any>([]);
   const [types, setTypes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState<any>([]);
   const [selected, setSelected] = useState('Type');
-  const baseUrl = 'https://pokeapi.co/api/v2';
+  const [currentPageUrl, setCurrentPageUrl] = useState<any>(
+    `${baseUrl}/pokemon`
+  );
+  const [nextPageUrl, setNextPageUrl] = useState();
+  const [prevPageUrl, setPrevPageUrl] = useState();
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`${baseUrl}/pokemon?limit=151`).then((response) => {
+    let cancel:any
+    axios.get(currentPageUrl,{cancelToken:new axios.CancelToken(c => cancel =c)}).then((response) => {
+      setNextPageUrl(response.data.next);
+      setPrevPageUrl(response.data.previous);
       const pokelist = response.data.results;
       const requests = [];
+     
 
       for (let i = 0; i < pokelist.length; i++) {
         requests.push(axios.get(pokelist[i].url));
@@ -29,32 +38,32 @@ function Router() {
         setPokemons(pokelist);
         setLoading(false);
       });
+      return ()=>cancel.cancel()
     });
-  }, []);
-  
-  
-  useEffect(()=>{
-     setLoading(true);
-     if(selected!=="Type"){
-    axios.get(`${baseUrl}/type/${selected}`).then((response) => {
-      const pokelist = response.data.pokemon;
-      
-      const requests = [];
+  }, [currentPageUrl]);
 
-      for (let i = 0; i < pokelist.length; i++) {
-        requests.push(axios.get(pokelist[i].pokemon.url));
-      }
+  useEffect(() => {
+    setLoading(true);
+    if (selected !== 'Type') {
+      axios.get(`${baseUrl}/type/${selected}`).then((response) => {
+        let pokelist = response.data.pokemon;
 
-      axios.all(requests).then((responses) => {
-        const pokelist = responses.map((response) => {
-          return response.data;
+        const requests = [];
+
+        for (let i = 0; i < pokelist.length; i++) {
+          requests.push(axios.get(pokelist[i].pokemon.url));
+        }
+
+        axios.all(requests).then((responses) => {
+          const pokelist = responses.map((response) => {
+            return response.data;
+          });
+          setPokemons(pokelist);
+          setLoading(false);
         });
-        setPokemons(pokelist);
-        setLoading(false);
       });
-    });}
-  },[selected])
-  
+    }
+  }, [selected]);
 
   useEffect(() => {
     axios.get(`${baseUrl}/type`).then((response) => {
@@ -62,7 +71,14 @@ function Router() {
       setTypes(allTypes);
     });
   }, []);
-  console.log(types);
+  const gotoNextPage = () => {
+    setCurrentPageUrl(nextPageUrl);
+    console.log('next page')
+  };
+  const gotoPrevPage = () => {
+    setCurrentPageUrl(prevPageUrl);
+    console.log('prev page')
+  };
   const pokemonFilter = pokemons.filter((pokemon: any) =>
     pokemon.name.toLowerCase().includes(search)
   );
@@ -82,6 +98,8 @@ function Router() {
                 setSearch,
                 selected,
                 setSelected,
+                gotoNextPage,
+                gotoPrevPage,
               }}
             >
               <Home />

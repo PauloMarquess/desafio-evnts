@@ -3,6 +3,7 @@ import { CounterContext } from '../../../context';
 import { Container } from '../../../pages/Home/style';
 import { BoxShadow } from '../../atoms/BoxShadow/style';
 import ModalPokemon from '../ModalPokemon';
+import Pagination from '../Pagination';
 
 import {
   CardTypes,
@@ -55,6 +56,7 @@ const Card = () => {
           </BoxShadow>
         ))}
       </ContainerCards>
+      <Pagination/>
     </Container>
   );
 };
