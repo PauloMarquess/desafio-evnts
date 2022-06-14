@@ -6,12 +6,13 @@ interface ButtonProps {
   onClick: () => void;
   fullWidth?: boolean;
   flexEnd?: boolean ;
+  disabled?:boolean
 }
 
-export const Button = ({ children, onClick, fullWidth, flexEnd }: ButtonProps) => {
+export const Button = ({ children, onClick, fullWidth, flexEnd,disabled }: ButtonProps) => {
   return (
     <ContainerButton flexEnd={flexEnd} fullWidth={fullWidth}>
-      <button onClick={onClick}>{children}</button>
+      <button disabled={disabled} onClick={onClick}>{children}</button>
     </ContainerButton>
   );
 };

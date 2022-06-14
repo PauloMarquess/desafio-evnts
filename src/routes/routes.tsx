@@ -19,27 +19,30 @@ function Router() {
 
   useEffect(() => {
     setLoading(true);
-    let cancel:any
-    axios.get(currentPageUrl,{cancelToken:new axios.CancelToken(c => cancel =c)}).then((response) => {
-      setNextPageUrl(response.data.next);
-      setPrevPageUrl(response.data.previous);
-      const pokelist = response.data.results;
-      const requests = [];
+    let cancel: any;
+    axios
+      .get(currentPageUrl, {
+        cancelToken: new axios.CancelToken((c) => (cancel = c)),
+      })
+      .then((response) => {
+        setNextPageUrl(response.data.next);
+        setPrevPageUrl(response.data.previous);
+        const pokelist = response.data.results;
+        const requests = [];
 
-      for (let i = 0; i < pokelist.length; i++) {
-        requests.push(axios.get(pokelist[i].url));
-      }
+        for (let i = 0; i < pokelist.length; i++) {
+          requests.push(axios.get(pokelist[i].url));
+        }
 
-      axios.all(requests).then((responses) => {
-        const pokelist = responses.map((response) => {
-          return response.data;
+        axios.all(requests).then((responses) => {
+          const pokelist = responses.map((response) => {
+            return response.data;
+          });
+          setPokemons(pokelist);
+          setLoading(false);
         });
-        setPokemons(pokelist);
-        setLoading(false);
+        return () => cancel.cancel();
       });
-      return ()=>cancel.cancel()
-    });
-   
   }, [currentPageUrl]);
 
   useEffect(() => {
@@ -58,7 +61,7 @@ function Router() {
           const pokelist = responses.map((response) => {
             return response.data;
           });
-         
+
           setPokemons(pokelist);
           setLoading(false);
         });
@@ -74,16 +77,13 @@ function Router() {
   }, []);
   const gotoNextPage = () => {
     setCurrentPageUrl(nextPageUrl);
-
   };
   const gotoPrevPage = () => {
     setCurrentPageUrl(prevPageUrl);
-
   };
   const pokemonFilter = pokemons.filter((pokemon: any) =>
     pokemon.name.toLowerCase().includes(search)
   );
-  
 
   return (
     <BrowserRouter>
@@ -102,6 +102,9 @@ function Router() {
                 setSelected,
                 gotoNextPage,
                 gotoPrevPage,
+                nextPageUrl,
+                prevPageUrl
+            
               }}
             >
               <Home />

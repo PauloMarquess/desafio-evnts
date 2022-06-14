@@ -5,14 +5,15 @@ import { Button } from '../../atoms/Button';
 import { ContainerPagination } from './style';
 
 const Pagination = () => {
-  const { gotoNextPage, gotoPrevPage } = useContext(CounterContext);
+  const { gotoNextPage, gotoPrevPage,prevPageUrl } = useContext(CounterContext);
+  
   return (
     <ContainerPagination>
       <BoxShadow >
-        {gotoNextPage && <Button fullWidth children="Prev" onClick={gotoPrevPage} />}
+        <Button  fullWidth children="Prev" disabled={prevPageUrl ===null && true}  onClick={gotoPrevPage} />
       </BoxShadow>
       <BoxShadow>
-        {gotoPrevPage && <Button fullWidth children="Next" onClick={gotoNextPage} />}
+        {gotoPrevPage && <Button  fullWidth children="Next" onClick={gotoNextPage} />}
       </BoxShadow>
     </ContainerPagination>
   );
