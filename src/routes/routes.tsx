@@ -85,7 +85,6 @@ function Router() {
   const pokemonFilter = pokemons.filter((pokemon: any) =>
     pokemon.name.toLowerCase().includes(search)
   );
- 
 
   return (
     <BrowserRouter>

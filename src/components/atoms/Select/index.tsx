@@ -9,8 +9,15 @@ const Select = ({ types }: any) => {
   return (
     <ContainerSelect>
       <img src={icons.pokeball} alt="imagem pokeball" />
-      <select defaultValue={selected} onChange={(e : any) =>{setSelected(e.target.value)}} >
-        <option id='default' disabled>Type</option>
+      <select
+        defaultValue={selected}
+        onChange={(e: any) => {
+          setSelected(e.target.value);
+        }}
+      >
+        <option id="default" disabled>
+          Type
+        </option>
         {types?.map((typ: any) => (
           <option className="options" key={typ.name}>
             {typ.name}

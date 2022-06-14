@@ -7,10 +7,10 @@ export const ContainerLoading = styled.div`
   justify-content: center;
   margin-top: 30px;
   gap: 30px;
- 
+
   img {
     width: 150px;
-    animation:loading 4s linear infinite;
+    animation: loading 4s linear infinite;
     @keyframes loading {
       from {
         transform: rotate(360deg);

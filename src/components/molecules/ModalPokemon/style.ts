@@ -11,7 +11,7 @@ export const ContainerModal = styled.div`
   justify-content: center;
   align-items: center;
   animation: show 0.5s both;
- 
+
   @keyframes show {
     from {
       opacity: 0;
@@ -22,7 +22,6 @@ export const ContainerModal = styled.div`
       transform: translate3d(0, 0, 0);
     }
   }
- 
 `;
 export const Modal = styled.div`
   background-color: #fff;

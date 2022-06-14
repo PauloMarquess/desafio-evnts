@@ -11,18 +11,16 @@ const FormSearch = () => {
 
   return (
     <CardInput>
-      <BoxShadow width='69%'>
+      <BoxShadow width="69%">
         <Input
           placeholder="Search your Pokémon!"
-          
           onChange={(e: any) => {
             setSearch(e.target.value.toLowerCase());
-           
           }}
         />
         <ImageInput src={icons.pokeBallPokemon} alt="Image Pokeball" />
       </BoxShadow>
-      <BoxShadow width='22%'>
+      <BoxShadow width="22%">
         <Select types={types} />
       </BoxShadow>
     </CardInput>
