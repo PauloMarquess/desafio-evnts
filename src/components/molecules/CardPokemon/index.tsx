@@ -34,7 +34,7 @@ const Card = () => {
         {pokemonFilter.map((pokemon: any) => (
           <React.Fragment key={pokemon.id}>
             {pokemon.id <= 151 && (
-              <BoxShadow
+              <BoxShadow  
                 width="22%"
                 onClick={() => {
                   handleModal(pokemon);
