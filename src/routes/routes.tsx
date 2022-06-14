@@ -25,7 +25,6 @@ function Router() {
       setPrevPageUrl(response.data.previous);
       const pokelist = response.data.results;
       const requests = [];
-     
 
       for (let i = 0; i < pokelist.length; i++) {
         requests.push(axios.get(pokelist[i].url));
@@ -40,6 +39,7 @@ function Router() {
       });
       return ()=>cancel.cancel()
     });
+   
   }, [currentPageUrl]);
 
   useEffect(() => {
@@ -83,6 +83,7 @@ function Router() {
   const pokemonFilter = pokemons.filter((pokemon: any) =>
     pokemon.name.toLowerCase().includes(search)
   );
+  
 
   return (
     <BrowserRouter>
