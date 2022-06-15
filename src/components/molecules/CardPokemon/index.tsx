@@ -3,7 +3,6 @@ import { CounterContext } from '../../../context';
 import { Container } from '../../../pages/Home/style';
 import { BoxShadow } from '../../atoms/BoxShadow/style';
 import ModalPokemon from '../ModalPokemon';
-import Pagination from '../Pagination';
 
 import {
   CardTypes,
@@ -34,7 +33,7 @@ const Card = () => {
         {pokemonFilter.map((pokemon: any) => (
           <React.Fragment key={pokemon.id}>
             {pokemon.id <= 151 && (
-              <BoxShadow 
+              <BoxShadow
                 width="22%"
                 onClick={() => {
                   handleModal(pokemon);
@@ -62,7 +61,6 @@ const Card = () => {
           </React.Fragment>
         ))}
       </ContainerCards>
-      <Pagination />
     </Container>
   );
 };

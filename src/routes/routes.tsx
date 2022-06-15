@@ -11,39 +11,26 @@ function Router() {
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState<any>([]);
   const [selected, setSelected] = useState('Type');
-  const [currentPageUrl, setCurrentPageUrl] = useState<any>(
-    `${baseUrl}/pokemon`
-  );
-  const [nextPageUrl, setNextPageUrl] = useState();
-  const [prevPageUrl, setPrevPageUrl] = useState();
 
   useEffect(() => {
     setLoading(true);
-    let cancel: any;
-    axios
-      .get(currentPageUrl, {
-        cancelToken: new axios.CancelToken((c) => (cancel = c)),
-      })
-      .then((response) => {
-        setNextPageUrl(response.data.next);
-        setPrevPageUrl(response.data.previous);
-        const pokelist = response.data.results;
-        const requests = [];
+    axios.get(`${baseUrl}/pokemon?limit=151`).then((response) => {
+      const pokelist = response.data.results;
+      const requests = [];
 
-        for (let i = 0; i < pokelist.length; i++) {
-          requests.push(axios.get(pokelist[i].url));
-        }
+      for (let i = 0; i < pokelist.length; i++) {
+        requests.push(axios.get(pokelist[i].url));
+      }
 
-        axios.all(requests).then((responses) => {
-          const pokelist = responses.map((response) => {
-            return response.data;
-          });
-          setPokemons(pokelist);
-          setLoading(false);
+      axios.all(requests).then((responses) => {
+        const pokelist = responses.map((response) => {
+          return response.data;
         });
-        return () => cancel.cancel();
+        setPokemons(pokelist);
+        setLoading(false);
       });
-  }, [currentPageUrl]);
+    });
+  }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -76,12 +63,6 @@ function Router() {
     });
   }, []);
 
-  const gotoNextPage = () => {
-    setCurrentPageUrl(nextPageUrl);
-  };
-  const gotoPrevPage = () => {
-    setCurrentPageUrl(prevPageUrl);
-  };
   const pokemonFilter = pokemons.filter((pokemon: any) =>
     pokemon.name.toLowerCase().includes(search)
   );
@@ -101,10 +82,6 @@ function Router() {
                 setSearch,
                 selected,
                 setSelected,
-                gotoNextPage,
-                gotoPrevPage,
-                nextPageUrl,
-                prevPageUrl,
                 search,
               }}
             >
